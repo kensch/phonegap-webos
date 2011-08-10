@@ -34,8 +34,11 @@ Mojo = {
 	
 	// used to redirect keyboard events to DOM event "back"
 	onKeyUp: function(e) {
-		if (e.keyCode == 27)
-			this.fireEvent(window, "back");
+		if (e.keyCode == 27){
+			var event = document.createEvent("Event");
+			event.initEvent("back", false, true);
+			window.dispatchEvent(event);
+		}
 	},
 		
 	// private method, used to fire off DOM events
